@@ -1,0 +1,118 @@
+:root {
+  --bg: #fafaf9;
+  --fg: #1c1917;
+  --muted: #78716c;
+  --line: #e7e5e4;
+  --card: #ffffff;
+  --accent: #4f46e5;
+  --accent-fg: #ffffff;
+  --hl: #f5f5f4;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0a09;
+    --fg: #f5f5f4;
+    --muted: #a8a29e;
+    --line: #292524;
+    --card: #1c1917;
+    --accent: #818cf8;
+    --accent-fg: #0c0a09;
+    --hl: #161412;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); color: var(--accent); }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+.top {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 28px 0;
+}
+.mark { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
+.top nav { display: flex; gap: 20px; font-size: 14px; }
+.top nav a { text-decoration: none; color: var(--muted); }
+.top nav a:hover { color: var(--fg); }
+
+.hero { padding: 56px 0 40px; }
+.eyebrow {
+  font-family: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 13px; color: var(--muted); margin: 0 0 16px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+h1 {
+  font-size: clamp(32px, 6vw, 48px); line-height: 1.1;
+  letter-spacing: -0.03em; margin: 0 0 20px; font-weight: 700;
+}
+h2 { font-size: 22px; letter-spacing: -0.02em; margin: 0 0 20px; }
+h3 { font-size: 17px; margin: 0; font-weight: 600; }
+.lede { font-size: 18px; color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+.lede.small { font-size: 16px; }
+
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: 10px 18px; border-radius: 10px;
+  border: 1px solid var(--line); text-decoration: none; font-weight: 500; font-size: 15px;
+  background: var(--card);
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+
+.block { padding: 40px 0; border-top: 1px solid var(--line); }
+
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px;
+}
+.card p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+
+.list { list-style: none; padding: 0; margin: 0; }
+.list li { padding: 18px 0; border-bottom: 1px dashed var(--line); }
+.list li:last-child { border-bottom: 0; }
+.list p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+.row-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.row-head a { text-decoration: none; }
+.tag {
+  font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+  color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.highlight {
+  background: var(--hl); border: 1px solid var(--line); border-radius: 18px;
+  padding: 32px 28px; margin: 8px 0 40px;
+}
+.checks { padding: 0; margin: 0 0 28px; list-style: none; }
+.checks li { padding: 6px 0 6px 28px; position: relative; }
+.checks li::before {
+  content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 600;
+}
+
+.links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.links a {
+  display: inline-block; padding: 8px 14px; border: 1px solid var(--line);
+  border-radius: 999px; text-decoration: none; font-size: 14px; background: var(--card);
+}
+.links a:hover { border-color: var(--accent); }
+
+footer {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 13px;
+}
+.muted { color: var(--muted); }
+
+@media (max-width: 520px) {
+  .top nav { gap: 14px; }
+  .highlight { padding: 24px 18px; }
+}
