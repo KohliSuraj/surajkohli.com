@@ -8,17 +8,15 @@
   --accent-fg: #ffffff;
   --hl: #f5f5f4;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0c0a09;
-    --fg: #f5f5f4;
-    --muted: #a8a29e;
-    --line: #292524;
-    --card: #1c1917;
-    --accent: #818cf8;
-    --accent-fg: #0c0a09;
-    --hl: #161412;
-  }
+:root[data-theme="dark"] {
+  --bg: #0c0a09;
+  --fg: #f5f5f4;
+  --muted: #a8a29e;
+  --line: #292524;
+  --card: #1c1917;
+  --accent: #818cf8;
+  --accent-fg: #0c0a09;
+  --hl: #161412;
 }
 
 * { box-sizing: border-box; }
@@ -40,7 +38,20 @@ a:hover { text-decoration-color: var(--accent); color: var(--accent); }
   padding: 28px 0;
 }
 .mark { font-weight: 700; text-decoration: none; letter-spacing: -0.01em; }
-.top nav { display: flex; gap: 20px; font-size: 14px; }
+.top nav { display: flex; gap: 20px; font-size: 14px; align-items: center; }
+html { color-scheme: light; }
+html[data-theme="dark"] { color-scheme: dark; }
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--card); color: var(--fg); cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.theme-toggle svg { width: 16px; height: 16px; }
+.theme-toggle .moon { display: block; }
+.theme-toggle .sun { display: none; }
+html[data-theme="dark"] .theme-toggle .moon { display: none; }
+html[data-theme="dark"] .theme-toggle .sun { display: block; }
 .top nav a { text-decoration: none; color: var(--muted); }
 .top nav a:hover { color: var(--fg); }
 
