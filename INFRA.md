@@ -19,6 +19,10 @@ How surajkohli.com is set up, and why.
 
 - **Cloudflare Web Analytics**, added by hand as a script tag in `index.html`.
 - Why by hand: traffic does not pass through Cloudflare, so Cloudflare cannot add it automatically.
+- **PostHog** (US cloud), loaded by a snippet in the `<head>` of `index.html`. It records page views with referrer, UTM tags, location and device, and sets a cookie so repeat visitors are recognized.
+- The chat widget sends its own events to PostHog: `chat_opened`, `question_asked`, `chat_error`, `citation_opened`, `linkedin_clicked`. Each carries `conversation_id`, the same ID the backend uses for the LangSmith thread, so a PostHog visitor can be matched to their conversation in LangSmith.
+- Cloudflare stays for now as a second count: ad blockers block PostHog but rarely Cloudflare's beacon.
+- In the PostHog project settings, turn on "Discard client IP data" so only the derived country and city are stored.
 
 ## Chatbot
 
