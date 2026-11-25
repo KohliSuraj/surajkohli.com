@@ -10,17 +10,26 @@ permissions:
 concurrency:
   group: pages
   cancel-in-progress: true
+# Upload and deploy run in separate jobs, as actions/deploy-pages recommends. In one job the
+# deploy step can look up the artifact before GitHub lists it and fail with
+# "No artifacts named github-pages" (actions/deploy-pages#451). A re-run of such a run then
+# fails with "Multiple artifacts named github-pages", so push a new commit or use
+# workflow_dispatch instead of re-running.
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
